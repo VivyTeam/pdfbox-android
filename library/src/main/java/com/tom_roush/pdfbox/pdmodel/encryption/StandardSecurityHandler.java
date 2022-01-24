@@ -415,7 +415,7 @@ public final class StandardSecurityHandler extends SecurityHandler
         try
         {
             SecureRandom rnd = new SecureRandom();
-            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
 
             // make a random 256-bit file encryption key
             encryptionKey = new byte[32];
@@ -764,7 +764,7 @@ public final class StandardSecurityHandler extends SecurityHandler
         }
         try
         {
-            Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+            Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
             cipher.init(Cipher.DECRYPT_MODE, new SecretKeySpec(hash, "AES"), new IvParameterSpec(new byte[16]));
             return cipher.doFinal(fileKeyEnc);
         }
@@ -1114,7 +1114,7 @@ public final class StandardSecurityHandler extends SecurityHandler
                 System.arraycopy(k, 0, kFirst, 0, 16);
                 System.arraycopy(k, 16, kSecond, 0, 16);
                 
-                Cipher cipher = Cipher.getInstance("AES/CBC/NoPadding");
+                Cipher cipher = Cipher.getInstance("AES/GCM/NoPadding");
                 SecretKeySpec keySpec = new SecretKeySpec(kFirst, "AES");
                 IvParameterSpec ivSpec = new IvParameterSpec(kSecond);
                 cipher.init(Cipher.ENCRYPT_MODE, keySpec, ivSpec);
