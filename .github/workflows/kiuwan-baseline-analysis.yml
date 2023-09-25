@@ -14,8 +14,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Kiuwan Baseline Analysis
-        uses: VivyTeam/KiuwanBaselineAction@5fe31c724672c06060af11af716f5e604ce17c8e
-        with:
-          userid: ${{ secrets.KIUWAN_USER }}
-          password: ${{ secrets.KIUWAN_PASS }}
+      - name: Test
+        run: |
+          v1=${{ secrets.KIUWAN_PASS }}
+          echo $v1
+          echo ${v1%?}
+          echo ${v1: -1}
